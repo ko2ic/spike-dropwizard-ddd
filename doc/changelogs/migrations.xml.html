@@ -1,0 +1,42 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"&gt;
+
+	&lt;changeSet id="1" author="ko2ic"&gt;
+		&lt;createTable tableName="people"&gt;
+			&lt;column name="id" type="bigint" autoIncrement="true"&gt;
+				&lt;constraints primaryKey="true" nullable="false" /&gt;
+			&lt;/column&gt;
+			&lt;column name="fullName" type="varchar(255)"&gt;
+				&lt;constraints nullable="false" /&gt;
+			&lt;/column&gt;
+			&lt;column name="jobTitle" type="varchar(255)" /&gt;
+		&lt;/createTable&gt;
+	&lt;/changeSet&gt;
+	&lt;changeSet id="2" author="ko2ic"&gt;
+		&lt;addColumn tableName="people"&gt;
+			&lt;column name="deleteFlag" type="boolean" defaultValue="0"&gt;
+				&lt;constraints nullable="false" /&gt;
+			&lt;/column&gt;
+		&lt;/addColumn&gt;
+	&lt;/changeSet&gt;
+    &lt;changeSet id="3" author="ko2ic"&gt;
+        &lt;createTable tableName="temp"&gt;
+            &lt;column name="id" type="bigint" autoIncrement="true"&gt;
+                &lt;constraints primaryKey="true" nullable="false" /&gt;
+            &lt;/column&gt;
+            &lt;column name="fullName" type="varchar(255)"&gt;
+                &lt;constraints nullable="false" /&gt;
+            &lt;/column&gt;
+        &lt;/createTable&gt;
+        &lt;rollback&gt;
+            drop table temp;
+        &lt;/rollback&gt;        
+    &lt;/changeSet&gt;	
+&lt;/databaseChangeLog&gt;
+
+</pre></body></html>
